@@ -1,0 +1,36 @@
+{
+  "name": "portfolio",
+  "version": "1.0.0",
+  "description": "Personal Portfolio Website of Web Developer - Anish Sapkota",
+  "main": "index.js",
+  "scripts": {
+    "start": "webpack-dev-server --mode development --host 0.0.0.0",
+    "build": "webpack --mode production",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "sapkotaanish.github.io"
+  },
+  "keywords": [
+    "anish",
+    "sapkota"
+  ],
+  "author": "Anish Sapkota",
+  "license": "ISC",
+  "devDependencies": {
+    "html-webpack-plugin": "^4.4.1",
+    "webpack-cli": "^3.3.12"
+  },
+  "dependencies": {
+    "@mdi/font": "^5.5.55",
+    "@mdi/js": "^5.5.55",
+    "css-loader": "^4.3.0",
+    "file-loader": "^6.1.0",
+    "sass": "^1.26.10",
+    "sass-loader": "^10.0.2",
+    "style-loader": "^1.2.1",
+    "webpack": "^4.44.1",
+    "webpack-dev-server": "^3.11.0"
+  }
+}
