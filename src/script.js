@@ -19,6 +19,7 @@ import {
 	mdiEmail,
 	mdiQuora,
 	mdiSend,
+	mdiTwitter,
 
 } from '@mdi/js';
 
@@ -32,9 +33,9 @@ let icons = [
 	{ 'path': mdiFacebook, 'class': 'mdi-facebook' },
 	{ 'path': mdiLinkedin, 'class': 'mdi-linkedin' },
 	{ 'path': mdiEmail, 'class': 'mdi-email' },
-	{ 'path': mdiQuora, 'class': 'mdi-quora' },
+	{ 'path': mdiTwitter, 'class': 'mdi-twitter' },
 	{ 'path': mdiSend, 'class': 'mdi-send' },
-];
+]
 
 icons.forEach( icon => {
 	let elements = document.getElementsByClassName(icon.class);
