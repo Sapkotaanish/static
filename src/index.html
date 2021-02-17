@@ -10,7 +10,9 @@
 				<svg class="mdi mdi-menu" onClick="displayMenu()"></svg>
 				<h2>Anish Sapkota</h2>
 			</div>
-			<div class="primary">
+			<div id="overlay" onclick="hideMenu()">
+			</div>
+			<div class="primary" id="primary">
 				<div class="featured section">
 					<h1>Junior Front-End Developer</h1>
 					<h2 id="typing"></h2>
@@ -73,7 +75,7 @@
 					</div>
 				</div>
 			</div>
-			<footer class="footer">
+			<footer class="footer" id="footer">
 				<p>Made with love by Myself.</p>
 			</footer>
 			<div class="secondary" id="secondary">
@@ -110,10 +112,18 @@
 						<h3>Connect with me</h3>
 					</div>
 					<div class="social">
-						<a href="#" class="facebook"><svg title="facebook" class="mdi mdi-facebook" viewBox="0 0 50 50"></svg></a>
-						<a href="#" class="linkedin"><svg title="Linkedin" class="mdi mdi-linkedin" viewBox="0 0 50 50"></svg></a>
-						<a href="#" class="mail"><svg title="email" class="mdi mdi-email" viewBox="0 0 50 50"></svg></a>
-						<a href="#" class="Twitter"><svg title="Quora" class="mdi mdi-twitter" viewBox="0 0 50 50"></svg></a>
+						<div class="social-icon">
+							<a href="#" class="facebook"><svg title="facebook" class="mdi mdi-facebook" viewBox="0 0 50 50"></svg></a>
+						</div>
+						<div class="social-icon">
+							<a href="#" class="linkedin"><svg title="Linkedin" class="mdi mdi-linkedin" viewBox="0 0 50 50"></svg></a>
+						</div>
+						<div class="social-icon">
+							<a href="#" class="mail"><svg title="email" class="mdi mdi-email" viewBox="0 0 50 50"></svg></a>
+						</div>
+						<div class="social-icon">
+							<a href="#" class="Twitter"><svg title="Quora" class="mdi mdi-twitter" viewBox="0 0 50 50"></svg></a>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -122,43 +132,40 @@
 
 	<script>
 
+		var secondary = document.getElementById("secondary");
+		var overlay = document.getElementById("overlay");
+		var primary = document.getElementById("primary");
+		var footer = document.getElementById("footer");
+		var skills = document.getElementById("skills");
+		var progressbar = document.getElementsByClassName("progressbar");
+		var typing = document.getElementById("typing");
+
 
 		var i = 0;
 		var j;
 		var k = 0;
 		var word;
-		var element = document.getElementById("typing");
 
-		function startTyping(){
-			var skills = ['HTML', 'CSS', 'JavaScript', 'WordPress', 'React.js'];
-			i = i >= skills.length ?  0 : i;
-			var word = skills[i];
-			if(typing(word) === true){
-				i++;
-				setTimeout(startTyping, 200);
-			};
-			
-		}
 
-		function typing(myWord){
+		function type(myWord){
 			if(k === 0 && myWord){
 				word = myWord;
 				j = word.length;
 			}
 			if( k < word.length){
-				element.innerHTML += word.charAt(k);
+				typing.innerHTML += word.charAt(k);
 				k++;
-				setTimeout(typing, 300);
+				setTimeout(type, 200);
 			}else{
 				k = 0;
-				erasing();
+				erase();
 			}
 		}
 
-		function erasing(){
+		function erase(){
 			if(j > -1){
-				element.innerHTML = word.substr(0, j);
-				setTimeout(erasing, 200);
+				typing.innerHTML = word.substr(0, j);
+				setTimeout(erase, 100);
 				j--;
 			}else{
 				i++;
@@ -167,21 +174,30 @@
 			}
 		}
 
+		function startTyping(){
+			var skills = ['HTML', 'CSS', 'JavaScript', 'WordPress', 'React.js'];
+			i = i >= skills.length ?  0 : i;
+			var word = skills[i];
+			if(type(word) === true){
+				i++;
+				setTimeout(startTyping, 200);
+			};
+			
+		}
+
 		function displayMenu(){
-			var element = document.getElementById("secondary");
-			element.classList.add('show-secondary');
+			secondary.classList.add('show-secondary');
+			overlay.setAttribute("style", `height: ${primary.offsetHeight + footer.offsetHeight}px`);
 		}
 
 		function hideMenu(){
-			var element = document.getElementById("secondary")
-			element.classList.remove('show-secondary');
+			secondary.classList.remove('show-secondary');
+			overlay.setAttribute("style", `height: 0px`);
 		}
 
 		var animated;
 
 		window.onscroll = function(){
-			var skills = document.getElementById("skills");
-			var progressbar = document.getElementsByClassName("progressbar");
 			if(animated != 1){
 				if(scrollY > skills.offsetTop - 500){
 					animated = 1;
